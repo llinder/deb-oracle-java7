@@ -41,6 +41,10 @@ configure)
 	    $slave1
     done
 
+    if which rebuild-security-providers2 >/dev/null; then
+        rebuild-security-providers2 > /dev/null 2>&1
+    fi
+
     update-alternatives \
 	--install /usr/bin/jexec jexec $basediralias/jre/lib/jexec $priority \
 	--slave \

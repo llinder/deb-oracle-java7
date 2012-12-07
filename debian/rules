@@ -271,8 +271,10 @@ binary-$(p_jbin):	build
 	dh_testroot
 	dh_clean -d
 	dh_installdirs \
+		usr/sbin \
 		usr/share/doc \
 		etc/$(jdiralias)/security \
+		$(security)/security.d \
 		$(basedir)/ext \
 		$(basedir)/man/man1 \
 		$(basedir)/man/ja/man1 \
@@ -297,6 +299,9 @@ binary-$(p_jbin):	build
 	mv $(d_jbin)/$(basedir)/jre/bin/javaws $(d_jbin)/$(basedir)/jre/bin/javaws.real
 	install -m 755 debian/javaws-wrapper.sh $(d_jbin)/$(basedir)/jre/bin/javaws
 
+	: # install rebuild script for java security providers
+	install -m 755  debian/rebuild-security-providers2.sh \
+		$(d_jbin)/usr/sbin/rebuild-security-providers2
 
 ###	: # get upstream docs out of there
 	rm -f $(d_jbin)/$(basedir)/jre/{CHANGES,INSTALL}
@@ -330,6 +335,21 @@ binary-$(p_jbin):	build
 		$(d_jbin)/etc/$(jdiralias)/
 	-mv $(d_jbin)/$(basedir)/jre/lib/security/{java.*,cacerts} \
 		$(d_jbin)/$(security)
+
+	: # create securoty provider descriptors
+	for p in \
+	  1001-sun.security.provider.Sun \
+	  1002-sun.security.rsa.SunRsaSign \
+	  1003-sun.security.ec.SunEC \
+	  1004-com.sun.net.ssl.internal.ssl.Provider \
+	  1005-com.sun.crypto.provider.SunJCE \
+	  1006-sun.security.jgss.SunProvider \
+	  1007-com.sun.security.sasl.Provider \
+	  1008-org.jcp.xml.dsig.internal.dom.XMLDSigRI \
+	  1009-sun.security.smartcardio.SunPCSC; \
+	do \
+	  touch $(d_jbin)/$(security)/security.d/$$p; \
+	done
 
 	: # create links for the conffiles
 	find $(d_jbin)/etc/$(jdiralias) -type f ! -name jvm.cfg \

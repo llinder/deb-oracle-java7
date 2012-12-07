@@ -16,3 +16,4 @@
 @basename@-bin: embedded-library @basedir@/jre/lib/@arch@/libsplashscreen.so: libpng
 @basename@-bin: embedded-library @basedir@/jre/lib/@arch@/libzip.so: zlib
 @basename@-bin: embedded-library @basedir@/jre/lib/@arch@/libjavafx-iio.so: libjpeg
+@basename@-bin: binary-without-manpage usr/sbin/rebuild-security-providers2
