@@ -154,7 +154,10 @@ control: control-stamp
 control-stamp: debian/control packaging-files
 	touch control-stamp
 
-build: build-arch build-indep
+download:
+	dh_auto_build
+
+build: download build-arch build-indep
 build-arch: build-stamp
 build-indep: build-stamp
 build-stamp: info unpack-stamp control-stamp
@@ -261,6 +264,8 @@ clean:
 	done
 	rm -f debian/$(basename)*.links
 	rm -f debian/*.debhelper.log
+
+	dh_auto_clean
 
 	dh_clean
 
