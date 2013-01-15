@@ -1,3 +1,9 @@
+oracle-java7 (7.11-1+nmu1) unstable; urgency=low
+
+  * Non-maintainer upload
+
+ -- Lance Linder <llinder@medicomhealth.com>  Tue, 15 Dec 2012 15:30:00 -0600
+
 oracle-java7 (7.11-1) unstable; urgency=high
 
   * SECURITY UPDATE:

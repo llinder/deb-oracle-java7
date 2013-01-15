@@ -3,10 +3,11 @@
 
 # START values that need to be updated for each Java release
 
-version		:= 7u9
+version		:= 7u11
+version_mintor	:= b21
 java_sha256_map	:= \
-	amd64=1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7 \
-	i386=47e86ceb7f59c821a8d0c54f34530bca84e10c1849ed46da7f4fdb5f621bc8d6
+	amd64=8ae77f5fd43e72dc87135af1c4ee2e294bd6debcec00778509519e0d1f8e5c35 \
+	i386=7f8efcbba7d32236a1a9858660ae4e42e32510a487cebffbcf934999deb53d35
 
 # END
 
@@ -26,7 +27,7 @@ archdir         := $(strip $(patsubst $(DEB_HOST_ARCH)=%, %, \
 java_sha256	:= $(strip $(patsubst $(DEB_HOST_ARCH)=%, %, \
 			$(filter $(DEB_HOST_ARCH)=%, $(sha256_map))))
 java_filename	:= jdk-$(version)-linux-$(arch).tar.gz
-java_url	:= http://download.oracle.com/otn-pub/java/jdk/7u9-b05/$(java_filename)
+java_url	:= http://download.oracle.com/otn-pub/java/jdk/$(version)-$(version_mintor)/$(java_filename)
 
 jce_sha256	:= 7a8d790e7bd9c2f82a83baddfae765797a4a56ea603c9150c87b7cdb7800194d
 jce_filename	:= UnlimitedJCEPolicyJDK7.zip
