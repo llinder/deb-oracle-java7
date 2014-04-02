@@ -37,7 +37,7 @@ build: download-java download-jce
 
 download-java:
 	wget --progress=bar:force -t 2 --continue -O $(java_filename) \
-		--header "Cookie: gpw_e24=h" $(java_url) || \
+		--header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=h" $(java_url) || \
 		echo 'Java download not found'
 	
 	@echo $(java_sha256) $(java_filename) sha256sum -c || \
@@ -45,7 +45,7 @@ download-java:
 
 download-jce:
 	wget --progress=bar:force -t 2 --continue -O $(jce_filename) \
-		--header "Cookie: gpw_e24=h" $(jce_url) || \
+		--header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=h" $(jce_url) || \
 		echo 'JCE download not found'
 	
 	@echo $(jce_sha256) $(jce_filename) sha256sum -c || \
